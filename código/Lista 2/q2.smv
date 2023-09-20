@@ -2,9 +2,9 @@ MODULE main
 
 VAR
 
-    andar: 1 .. 3;
+    andar: 1 .. 5;
     porta_aberta: boolean;
-    botao_apertado: 1 .. 3;
+    botao_apertado: 1 .. 5;
  
 ASSIGN
 
@@ -14,12 +14,28 @@ ASSIGN
 
 next(andar):= case andar = 1 & !porta_aberta & botao_apertado = 2: 2;
                    andar = 1 & !porta_aberta & botao_apertado = 3: 3; 
+                   andar = 1 & !porta_aberta & botao_apertado = 4: 4; 
+                   andar = 1 & !porta_aberta & botao_apertado = 5: 5; 
                    
                    andar = 2 & !porta_aberta & botao_apertado = 1: 1;
                    andar = 2 & !porta_aberta & botao_apertado = 3: 3;
+                   andar = 2 & !porta_aberta & botao_apertado = 4: 4;
+                   andar = 2 & !porta_aberta & botao_apertado = 5: 5;
 
                    andar = 3 & !porta_aberta & botao_apertado = 1: 1;
                    andar = 3 & !porta_aberta & botao_apertado = 2: 2;
+                   andar = 3 & !porta_aberta & botao_apertado = 4: 4;
+                   andar = 3 & !porta_aberta & botao_apertado = 5: 5;
+
+                   andar = 4 & !porta_aberta & botao_apertado = 1: 1;
+                   andar = 4 & !porta_aberta & botao_apertado = 2: 2;
+                   andar = 4 & !porta_aberta & botao_apertado = 3: 3;
+                   andar = 4 & !porta_aberta & botao_apertado = 5: 5;
+
+                   andar = 5 & !porta_aberta & botao_apertado = 1: 1;
+                   andar = 5 & !porta_aberta & botao_apertado = 2: 2;
+                   andar = 5 & !porta_aberta & botao_apertado = 3: 3;
+                   andar = 5 & !porta_aberta & botao_apertado = 4: 4;
 
                    TRUE: andar;
               esac;
@@ -36,6 +52,6 @@ next(botao_apertado):= case !porta_aberta: botao_apertado;
 
 DEFINE
 
-    abrir_porta1 := porta_aberta = TRUE & andar >= 1 & andar <= 3;
-    prop1 := andar >= 1 & andar <= 3;
+    abrir_porta1 := porta_aberta = TRUE & andar >= 1 & andar <= 5;
+    prop1 := andar >= 1 & andar <= 5;
     prop2 := !((andar != next(andar)) & !porta_aberta);
