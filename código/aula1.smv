@@ -1,0 +1,19 @@
+MODULE main
+
+VAR
+
+  state: 1 .. 2;
+  --request: boolean;
+ 
+ASSIGN
+
+init(state):= {1, 2};
+next(state):= case state = 1: 2;
+                   TRUE: state;
+              esac;
+
+SPEC
+AF (state = 1 -> AF state = 2)
+
+SPEC
+AG (state = 1 -> AG state = 1)

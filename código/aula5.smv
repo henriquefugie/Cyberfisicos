@@ -1,0 +1,28 @@
+MODULE main
+
+VAR 
+
+    cor : {vermelho, amarelo, verde};
+
+ASSIGN
+
+    init(cor) := vermelho;
+
+    next(cor) :=
+        case
+            cor = vermelho : verde;
+            cor = verde : amarelo;
+            cor = amarelo : vermelho;
+        esac;
+
+SPEC
+AG(cor = vermelho -> AF cor = verde);
+
+SPEC
+AG(cor = vermelho -> EX EX EX EX cor = verde);
+
+SPEC
+AG(cor = vermelho -> EX cor = verde);
+
+SPEC
+AG(cor = verde -> AF cor = amarelo);
