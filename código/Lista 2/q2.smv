@@ -10,7 +10,7 @@ ASSIGN
 
     init(andar) := 1;
     init(porta_aberta) := FALSE;
-    init(botao_apertado) := FALSE;
+    init(botao_apertado) := 1;
 
 next(andar):= case andar = 1 & !porta_aberta & botao_apertado = 2: 2;
                    andar = 1 & !porta_aberta & botao_apertado = 3: 3; 
