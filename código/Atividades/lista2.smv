@@ -29,7 +29,7 @@ SPEC
 AG (p | q);
 
 -- SPEC
--- AG ((p | q) U r);
+-- AG [(p | q) U r];
 
 SPEC
 AG (EX s);
