@@ -1,0 +1,21 @@
+MODULE main
+
+VAR
+
+  state: {ready, busy};
+  a: 0 .. 512;
+  request: boolean;
+ 
+ASSIGN
+
+init(state):= ready;
+next(state):= case state = ready & request = TRUE: busy;
+                   TRUE: {ready, busy};
+              esac;
+
+SPEC
+AG (request -> AF state = busy)
+
+-- check_ctlspec -p "AG (request -> AF state = busy)"
+-- nusmv -int a.smv
+-- go
