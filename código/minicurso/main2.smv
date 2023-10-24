@@ -1,0 +1,24 @@
+MODULE main
+
+VAR
+
+    semaforo: {1, 2, 3};
+
+ASSIGN
+
+    init(semaforo) := 3;
+    next(semaforo) := case 
+
+                        semaforo = 1: 2;
+                        semaforo = 2: 3;
+                        semaforo = 3: 1;
+
+                        TRUE: semaforo;
+                        
+                    esac;
+
+DEFINE
+
+    verde := semaforo = 1;
+    amarelo := semaforo = 2;
+    vermelho := semaforo = 3;

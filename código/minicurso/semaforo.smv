@@ -1,0 +1,34 @@
+MODULE main
+
+VAR
+
+semaforo: {verde, amarelo, vermelho};
+
+ASSIGN
+
+init(semaforo) := vermelho;
+next(semaforo) := case
+
+                    semaforo = verde: next(amarelo);
+                    semaforo = vermelho: verde;
+                    semaforo = amarelo: vermelho;
+
+                esac;
+
+-- SPEC
+-- AG(semaforo = amarelo -> AX semaforo = vermelho)
+
+-- SPEC
+-- AG(semaforo = amarelo -> AX AX semaforo = verde)
+
+-- SPEC
+-- AG(semaforo = amarelo -> AG semaforo = verde)
+
+-- SPEC
+-- AG(semaforo = amarelo -> AF semaforo = verde)
+
+SPEC
+AG(semaforo = verde -> AX semaforo = amarelo)
+
+SPEC
+AG(semaforo = verde -> AX AX semaforo = amarelo)
