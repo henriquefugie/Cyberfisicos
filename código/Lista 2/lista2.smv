@@ -1,0 +1,35 @@
+MODULE main
+
+VAR
+
+    state: 1 .. 5;
+ 
+ASSIGN
+
+    init(state) := 1;
+
+next(state):= case state = 1: 4;
+                   state = 2: 3; 
+                   state = 3: {1, 4};
+                   state = 4: {3, 5};
+                   state = 5: 5;
+              esac;
+
+DEFINE
+
+    p := state = 1 | state = 3;
+    q := state = 1 | state = 4 | state = 5 ;
+    r := state = 5;
+    s := state = 2;
+
+SPEC
+AF (p & q);
+
+SPEC
+AG (p | q);
+
+SPEC
+A [(p | q) U r];
+
+SPEC
+AG (EX s);
