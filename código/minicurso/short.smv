@@ -1,0 +1,19 @@
+MODULE main
+
+VAR
+
+    state: {ready, busy};
+    request: boolean;
+ 
+ASSIGN
+
+init(state):= ready;
+next(state):= case state = ready & request: busy;
+                   TRUE: {ready, busy};
+              esac;
+
+SPEC
+AG (request -> AF (state = busy))
+
+SPEC
+AG (request -> AX (state = busy))
