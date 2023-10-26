@@ -1,0 +1,33 @@
+MODULE main
+
+VAR
+
+    estados: {s0, s1, s2};
+    cor: {r, g, y};
+
+ASSIGN
+
+    init(estados) := s0;
+    next(estados) := case 
+
+                        estados = s0 & cor = r: s1;
+                        estados = s1 & cor = g: s2;
+                        estados = s2 & cor = y: s0;
+
+                        TRUE: estados;
+                        
+                    esac;
+    
+    next(cor) := case 
+
+                        cor = r: g;
+                        cor = g: y;
+                        cor = y: r;
+                        
+                    esac;
+
+SPEC
+AG (estados = s0 & cor = r -> AF estados = s1)
+
+SPEC
+AG (cor = g -> AX cor = y)

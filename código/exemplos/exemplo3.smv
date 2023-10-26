@@ -1,0 +1,22 @@
+MODULE main
+
+VAR
+
+estados: {g, y, r};
+
+ASSIGN
+
+init(estados) := r;
+next(estados) := case
+
+                    estados = r: g;
+                    estados = g: y;
+                    estados = y: r;
+
+                esac;
+
+SPEC
+AG (estados = r -> AF estados = g)
+
+SPEC
+AG (estados = g -> AX estados = y) 
